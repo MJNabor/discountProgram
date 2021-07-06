@@ -22,7 +22,6 @@ int main() {
     {
         totalNumberOfBooks = totalNumberOfBooks + book[count];
     }
-    printf("Total number of books is %d \n", totalNumberOfBooks);
     
     float totalBookPrice = 0;
     float discount = 0.05;
@@ -41,8 +40,6 @@ int main() {
             maxInSet++;
         }
     }
-    
-    printf("maxInSet is %d \n", maxInSet);
         
     for (int count = maxInSet; count > 0; count--)
     {
@@ -51,10 +48,8 @@ int main() {
         if ((totalNumberOfBooks % count) == 0)
         {
             numberOfSets = totalNumberOfBooks / count;
-            printf("numberOfSets is %d \n", numberOfSets);
             
             numberOfBooksInSet = totalNumberOfBooks / numberOfSets;
-            printf("numberOfBooksInSet is %d \n", numberOfBooksInSet);
                 
             break;
         }
@@ -92,8 +87,6 @@ int main() {
                 }
             }
             
-            printf("seriesBought is %d \n", seriesBought);
-            
             if (seriesBought != 0)
             {
                 totalBookPriceTemp = bookPrice * seriesBought;
@@ -110,7 +103,6 @@ int main() {
                     discountTemp = discount * seriesBought;
                 }
                 
-                printf("discountTemp is %f \n", discountTemp);
                 discountedPriceTemp = totalBookPriceTemp - (totalBookPriceTemp * discountTemp);
                 
                 seriesBought = 0;
@@ -121,8 +113,8 @@ int main() {
         }
     }
     
-    printf("totalBookPrice with %d books in series %f \n", totalNumberOfBooks, totalBookPrice);
-    printf("discounted price is %f \n", discountedPrice);
+    printf("Total Price with %d books in series %.2f \n", totalNumberOfBooks, totalBookPrice);
+    printf("Final Discounted Price is %.2f \n", discountedPrice);
     
     return 0;
 }
