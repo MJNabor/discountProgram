@@ -32,9 +32,19 @@ int main() {
     int totalNumberOfBooksCounter = totalNumberOfBooks;
     
     int numberOfBooksInSet;
-    int setCounter = 0;
+    int maxInSet = 0;
+    
+    for (int count = 0; count < bookInSeries; count++)
+    {
+        if (book[count] != 0)
+        {
+            maxInSet++;
+        }
+    }
+    
+    printf("maxInSet is %d \n", maxInSet);
         
-    for (int count = bookInSeries; count > 0; count--)
+    for (int count = maxInSet; count > 0; count--)
     {
         int numberOfSets;
             
@@ -50,52 +60,65 @@ int main() {
         }
     }
     
-    while (totalNumberOfBooksCounter != 0)
+    if (totalNumberOfBooksCounter == 1)
     {
-        int count;
-        float totalBookPriceTemp;
-        float discountTemp;
-        float discountedPriceTemp;
-        
-        for (count = 0; count < bookInSeries; count++)
+        totalBookPrice = bookPrice;
+        discountedPrice = bookPrice;
+    }
+    else if (totalNumberOfBooksCounter != 1)
+    {
+        while (totalNumberOfBooksCounter != 0)
         {
-            if (book[count] != 0)
+            int count;
+            float totalBookPriceTemp;
+            float discountTemp;
+            float discountedPriceTemp;
+            int setCounter = 0;
+            
+            for (count = 0; count < bookInSeries; count++)
             {
-                book[count]--;
-                seriesBought++;
-                totalNumberOfBooksCounter--;
+                if (book[count] != 0)
+                {
+                    book[count]--;
+                    seriesBought++;
+                    totalNumberOfBooksCounter--;
+                    
+                    setCounter++;
+                }
                 
-                setCounter++;
+                if (setCounter == numberOfBooksInSet)
+                {
+                    break;
+                }
             }
             
-            if (setCounter == numberOfBooksInSet)
+            printf("seriesBought is %d \n", seriesBought);
+            
+            if (seriesBought != 0)
             {
-                break;
+                totalBookPriceTemp = bookPrice * seriesBought;
+                if (seriesBought == 2)
+                {
+                    discountTemp = discount;
+                }
+                else if (seriesBought == 3)
+                {
+                    discountTemp = discount * 2;
+                }
+                else
+                {
+                    discountTemp = discount * seriesBought;
+                }
+                
+                printf("discountTemp is %f \n", discountTemp);
+                discountedPriceTemp = totalBookPriceTemp - (totalBookPriceTemp * discountTemp);
+                
+                seriesBought = 0;
             }
+            
+            totalBookPrice = totalBookPrice + totalBookPriceTemp;
+            discountedPrice = discountedPrice + discountedPriceTemp;
         }
-        
-        printf("seriesBought is %d \n", seriesBought);
-        
-        if (seriesBought != 0)
-        {
-            totalBookPriceTemp = bookPrice * seriesBought;
-            if (seriesBought != 3)
-            {
-                discountTemp = discount * seriesBought;
-            }
-            else
-            {
-                discountTemp = discount * 2;
-            }
-            
-            printf("discountTemp is %f \n", discountTemp);
-            discountedPriceTemp = totalBookPriceTemp - (totalBookPriceTemp * discountTemp);
-            
-            seriesBought = 0;
-        }
-        
-        totalBookPrice = totalBookPrice + totalBookPriceTemp;
-        discountedPrice = discountedPrice + discountedPriceTemp;
     }
     
     printf("totalBookPrice with %d books in series %f \n", totalNumberOfBooks, totalBookPrice);
