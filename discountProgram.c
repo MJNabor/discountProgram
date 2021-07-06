@@ -2,16 +2,18 @@ int main() {
     
     float bookPrice = 8;
     
-    int bookInSeries = 3;
+    int bookInSeries = 4;
     
-    int book[3] = {0, 0, 0};
+    int book[4] = {0, 0, 0, 0};
     
     printf("Enter the number of Book 1 sold: ");
     scanf("%d", &book[0]);
     printf("Enter the number of Book 2 sold: ");
     scanf("%d", &book[1]);
-        printf("Enter the number of Book 3 sold: ");
+    printf("Enter the number of Book 3 sold: ");
     scanf("%d", &book[2]);
+    printf("Enter the number of Book 4 sold: ");
+    scanf("%d", &book[3]);
     
     int totalNumberOfBooks = 0;
     for (int count = 0; count < bookInSeries; count++)
@@ -25,15 +27,21 @@ int main() {
     
     float discountedPrice = 0;
     
-    if (book[0] != 0 && book[1] != 0 && book[2] == 0)
+    if (book[0] != 0 && book[1] != 0 && book[2] == 0 && book[3] == 0)
     {
         totalBookPrice = bookPrice * 2;
         discountedPrice = totalBookPrice-(totalBookPrice*discount);
     }
-    else if (book[0] != 0 && book[1] != 0 && book[2] != 0)
+    else if (book[0] != 0 && book[1] != 0 && book[2] != 0 && book[3] == 0)
     {
         totalBookPrice = bookPrice * 3;
         discount = discount*2;
+        discountedPrice = totalBookPrice-(totalBookPrice*discount);
+    }
+    else if (book[0] != 0 && book[1] != 0 && book[2] != 0 && book[3] != 0)
+    {
+        totalBookPrice = bookPrice * 4;
+        discount = discount*4;
         discountedPrice = totalBookPrice-(totalBookPrice*discount);
     }
 
