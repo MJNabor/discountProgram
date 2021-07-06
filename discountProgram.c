@@ -28,32 +28,27 @@ int main() {
     float discount = 0.05;
     float discountedPrice = 0;
     
-/*    if (book[0] != 0 && book[1] != 0 && book[2] == 0 && book[3] == 0 && book[4] == 0)
-    {
-        totalBookPrice = bookPrice * 2;
-        discountedPrice = totalBookPrice-(totalBookPrice*discount);
-    }
-    else if (book[0] != 0 && book[1] != 0 && book[2] != 0 && book[3] == 0 && book[4] == 0)
-    {
-        totalBookPrice = bookPrice * 3;
-        discount = discount*2;
-        discountedPrice = totalBookPrice-(totalBookPrice*discount);
-    }
-    else if (book[0] != 0 && book[1] != 0 && book[2] != 0 && book[3] != 0 && book[4] == 0)
-    {
-        totalBookPrice = bookPrice * 4;
-        discount = discount*4;
-        discountedPrice = totalBookPrice-(totalBookPrice*discount);
-    }
-    else if (book[0] != 0 && book[1] != 0 && book[2] != 0 && book[3] != 0 && book[4] != 0)
-    {
-        totalBookPrice = bookPrice * 5;
-        discount = discount*5;
-        discountedPrice = totalBookPrice-(totalBookPrice*discount);
-    }*/
-    
     int seriesBought = 0;
     int totalNumberOfBooksCounter = totalNumberOfBooks;
+    
+    int numberOfBooksInSet;
+    int setCounter = 0;
+        
+    for (int count = bookInSeries; count > 0; count--)
+    {
+        int numberOfSets;
+            
+        if ((totalNumberOfBooks % count) == 0)
+        {
+            numberOfSets = totalNumberOfBooks / count;
+            printf("numberOfSets is %d \n", numberOfSets);
+            
+            numberOfBooksInSet = totalNumberOfBooks / numberOfSets;
+            printf("numberOfBooksInSet is %d \n", numberOfBooksInSet);
+                
+            break;
+        }
+    }
     
     while (totalNumberOfBooksCounter != 0)
     {
@@ -69,6 +64,13 @@ int main() {
                 book[count]--;
                 seriesBought++;
                 totalNumberOfBooksCounter--;
+                
+                setCounter++;
+            }
+            
+            if (setCounter == numberOfBooksInSet)
+            {
+                break;
             }
         }
         
